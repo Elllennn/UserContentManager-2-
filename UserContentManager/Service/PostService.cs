@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using UserContentManager.Contracts;
 using UserContentManager.Models;
 using UserContentManager.Repositories;
 
 namespace UserContentManager.Service
 {
-    public class PostService
+    public class PostService : IPostService
+
     {
 
         private readonly IPostRepository _postRepository;

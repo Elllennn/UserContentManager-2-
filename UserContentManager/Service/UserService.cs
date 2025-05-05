@@ -1,9 +1,10 @@
-﻿using UserContentManager.Models;
+﻿using UserContentManager.Contracts;
+using UserContentManager.Models;
 using UserContentManager.Repositories;
 
 namespace UserContentManager.Service
 {
-    public class UserService
+    public class UserService: IUserService
     {
 
         private readonly IUserRepository _userRepository;

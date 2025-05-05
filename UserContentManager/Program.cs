@@ -1,5 +1,7 @@
 using UserContentManager.Repositories;
 using UserContentManager.Service;
+using Serilog;
+using UserContentManager.Contracts;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,10 +15,17 @@ builder.Services.AddSingleton<IPostRepository, PostRepository>();
 builder.Services.AddSingleton<IUserRepository, UserRepository>();
 
 builder.Services.AddHttpClient();
-builder.Services.AddScoped<PostService>();
+builder.Services.AddScoped<IPostService,PostService>();
 
-builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<IUserService,UserService>();
 
+
+builder.Host.UseSerilog((context, loggerConfig) =>
+{
+    loggerConfig.WriteTo.File(
+        path: $"logs/log-{DateTime.Now:yyyy-ww}.txt", 
+        rollingInterval: RollingInterval.Day);
+});
 
 
 var app = builder.Build();
