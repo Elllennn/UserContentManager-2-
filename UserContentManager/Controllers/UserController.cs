@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System.Text;
 using System.Text.Json;
+using UserContentManager.Contracts;
 using UserContentManager.Models;
 using UserContentManager.Service;
 
@@ -11,12 +12,12 @@ namespace UserContentManager.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly UserService _userService;
-        private readonly PostService _postService;
+        private readonly IUserService _userService;
+        private readonly IPostService _postService;
         private readonly HttpClient _httpClient;
         private readonly ILogger<UserController> _logger;
         private readonly string _userUrl;
-        public UserController(UserService userService, PostService postService, HttpClient httpClient, IConfiguration configuration, ILogger<UserController> logger)
+        public UserController(IUserService userService, IPostService postService, HttpClient httpClient, IConfiguration configuration, ILogger<UserController> logger)
         {
             _userService = userService;
             _postService = postService;
