@@ -15,7 +15,6 @@ namespace UnitTest
         private readonly Mock<IPostRepository> _postRepositoryMock;
         private readonly Mock<IUserRepository> _userRepositoryMock;
         private readonly PostService _postService;
-
         public PostServiceTests()
         {
             _postRepositoryMock = new Mock<IPostRepository>();
